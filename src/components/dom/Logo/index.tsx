@@ -15,7 +15,7 @@ const Test = ({ className, dark }: TestProps) => (
       src={dark ? '/images/logo.png' : '/images/logo.png'}
       width={190}
       height={40}
-      alt='Brainwave'
+      alt='Logo'
     />
   </Link>
 )

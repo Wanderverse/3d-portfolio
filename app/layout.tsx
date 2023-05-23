@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         }
       `}</style>
       <head />
-      <body className={`${karla.variable} ${inter.variable} font-sans`}>
+      <body className={`${karla.variable} ${inter.variable} font-sans bg-[#0e031a]`}>
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <ColorModeProvider>
           <ColorModeScript initialColorMode='system' key='chakra-ui-no-flash' storageKey='chakra-ui-color-mode' />

@@ -1,8 +1,15 @@
 'use client'
 
+import { OrthographicCamera } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
 import dynamic from 'next/dynamic'
+import { Suspense, useRef } from 'react'
+// import { ChatBot } from '@/components/canvas/ChatBot'
 
-const Blob = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Blob), { ssr: false })
+const ChatBot = dynamic(() => import('@/components/canvas/ChatBot').then((mod) => mod.ChatBot), { ssr: false })
+
+// const ChatBot = dynamic(() => import('@/components/canvas/ChatBot').then((mod) => mod.ChatBot), { ssr: false })
+const Dom = dynamic(() => import('@/components/canvas/ChatBot').then((mod) => mod.Dom), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => (
@@ -19,22 +26,46 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
   ),
 })
 const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
-
+const CameraScreen = dynamic(() => import('@/components/canvas/CameraScreen').then((mod) => mod.CameraScreen), {
+  ssr: false,
+})
 export default function Page() {
+  const domContent = useRef()
+  const containerRef = useRef()
   return (
-    <>
-      <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
-        <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
-          <p className='w-full uppercase'>Next + React Three Fiber</p>
-          <h1 className='my-4 text-5xl font-bold leading-tight'>Next 3D Starter</h1>
-          <p className='mb-8 text-2xl leading-normal'>A minimalist starter for React, React-three-fiber and Threejs.</p>
-        </div>
-      </div>
-
-      <View className='absolute top-0 flex h-screen w-full flex-col items-center justify-center'>
-        <Blob />
-        <Common />
-      </View>
-    </>
+    <div ref={containerRef} className='content-container'>
+      <div
+        ref={domContent}
+        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}
+      />
+      {/* <Dom domContent={domContent} containerRef={containerRef} /> */}
+      <CameraScreen />
+      {/* <Canvas
+        shadows
+        flat
+        linear
+        // Since the canvas will receive events from the out-most container it must ignore events
+        // This will allow the HTML view underneath to receive events, too
+        style={{ pointerEvents: 'none' }}
+        // Re-connect r3f to a shared container, this allows both worlds (html & canvas) to receive events
+        eventSource={containerRef}
+        // Re-define the event-compute function which now uses pageX/Y instead of offsetX/Y
+        // Without this the right hand would reset to client 0/0 if it hovers over any of the HTML elements
+        eventPrefix='page'
+      >
+        <directionalLight
+          castShadow
+          intensity={0.4}
+          position={[-10, 50, 300]}
+          shadow-mapSize={[512, 512]}
+          shadow-bias={-0.002}
+        >
+          <orthographicCamera attach='shadow-camera' args={[-2000, 2000, 2000, -2000, -10000, 10000]} />
+        </directionalLight>
+        <OrthographicCamera makeDefault={true} far={100000} near={-100000} position={[0, 0, 1000]} />
+        <hemisphereLight intensity={0.5} color='#eaeaea' position={[0, 1, 0]} />
+        <ChatBot portal={domContent} position={[0, -50, 0]} />
+      </Canvas> */}
+    </div>
   )
 }
