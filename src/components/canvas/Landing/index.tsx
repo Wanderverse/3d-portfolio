@@ -26,7 +26,7 @@ const Landing = () => {
         <Particles count={20000} isNavigating={isNavigating} />
         <EffectComposer>
           <Bloom intensity={10} luminanceSmoothing={2} luminanceThreshold={0.1} />
-          <ChromaticAberration offset={[0.0015, 0.0008]} />
+          <ChromaticAberration offset={[0.0012, 0.0005]} />
         </EffectComposer>
       </group>
     </>

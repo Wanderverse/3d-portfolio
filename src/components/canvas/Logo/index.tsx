@@ -93,8 +93,8 @@ const Logo = ({ route = '/chat', ...props }) => {
     }
 
     if (portalRef.current) {
-      // portalRef.current.rotation.y = (easedTime / 2) * Math.PI * 2
-      // portalRef.current.rotation.z = (easedTime / 4) * Math.PI * 2
+      portalRef.current.rotation.y = (easedTime / 2) * Math.PI * 2
+      portalRef.current.rotation.z = (easedTime / 4) * Math.PI * 2
 
       // Interpolate the scale of the sphere
       const currentScale = portalRef.current.scale.x
@@ -106,7 +106,7 @@ const Logo = ({ route = '/chat', ...props }) => {
 
   return (
     <group {...props} dispose={null}>
-      <group name='Portal.Collective' position={[0, 0, 0]} scale={0.0} ref={portalRef}>
+      <group name='Portal.Collective' position={[0, 0, 0]} scale={0.01} ref={portalRef}>
         <group name='Button' position={[32.34, -600.02, 229.75]} scale={0.05}>
           {/* <group name='Button' position={[0, 0, 0]} scale={0.05}> */}
           <group
@@ -166,7 +166,7 @@ const Logo = ({ route = '/chat', ...props }) => {
                 position={[0, 0, 1.86]}
                 scale={1.2}
               />
-              <mesh
+              {/* <mesh
                 name='Bg Circle'
                 geometry={nodes['Bg Circle'].geometry}
                 material={materials['Bg Circle Material']}
@@ -174,7 +174,7 @@ const Logo = ({ route = '/chat', ...props }) => {
                 receiveShadow
                 position={[0, 0, -4.41]}
                 scale={1.28}
-              />
+              /> */}
             </group>
           </group>
         </group>
@@ -232,7 +232,8 @@ const Logo = ({ route = '/chat', ...props }) => {
                 resolution={1024}
                 thickness={10}
                 backsideThickness={5}
-                anisotropy={5}
+                anisotropicBlur={5}
+                // anisotropy={5}
                 temporalDistortion={0.2}
                 distortion={0.3}
                 backside
@@ -290,10 +291,10 @@ const Logo = ({ route = '/chat', ...props }) => {
           resolution={hovered ? 2048 : 1024}
           thickness={10}
           backsideThickness={hovered ? 0 : 10}
-          anisotropy={hovered ? 0.1 : 10}
+          anisotropicBlur={hovered ? 1 : 5}
           temporalDistortion={1}
           distortion={hovered ? 0.5 : 20}
-          backside={hovered ? false : true}
+          // backside={hovered ? false : true}
           ior={1}
           roughness={hovered ? 0 : 0.5}
           chromaticAberration={hovered ? 0 : 5}

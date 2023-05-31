@@ -5,8 +5,6 @@ import Icon from '@/components/dom/Icon'
 // import Updates from './Updates'
 // import Experience from './Experience'
 
-import Faq from './Faq'
-
 import { updates } from '@/mocks/updates'
 import { experience, faqs } from '@/mocks/faq'
 import dynamic from 'next/dynamic'
@@ -15,6 +13,7 @@ import { useRef } from 'react'
 const PageLayout = dynamic(() => import('@/components/dom/PageLayout').then((mod) => mod), { ssr: false })
 const Updates = dynamic(() => import('./Updates').then((mod) => mod), { ssr: false })
 const Experience = dynamic(() => import('./Experience').then((mod) => mod), { ssr: false })
+const Faq = dynamic(() => import('./Faq').then((mod) => mod), { ssr: false })
 
 const tabNavigation = ['Updates', 'FAQ', 'Experience']
 

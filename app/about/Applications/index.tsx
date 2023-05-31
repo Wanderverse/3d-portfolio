@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Layout from '@/components/Layout'
-import Icon from '@/components/Icon'
+import Layout from '@/components/dom/PageLayout'
+import Icon from '@/components/dom/Icon'
 import Application from './Application'
 
 import { applications } from '@/mocks/applications'

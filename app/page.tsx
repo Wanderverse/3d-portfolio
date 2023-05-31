@@ -2,9 +2,9 @@
 
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import Landing from '@/components/canvas/Landing'
+import Logo from '@/components/canvas/Logo'
 
-const Logo = dynamic(() => import('@/components/canvas/Logo').then((mod) => mod), { ssr: false })
-const Landing = dynamic(() => import('@/components/canvas/Landing'), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => (

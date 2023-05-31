@@ -170,9 +170,6 @@
 .screen-container {
   background-color: transparent;
   border-radius: 60px;
-  position: relative;
-  background: transparent;
-  border-radius: 60px;
   width: 800px;
   height: 900px;
   overflow: auto;
