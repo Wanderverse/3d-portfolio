@@ -56,7 +56,7 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
       title: 'About Me',
       icon: 'user-check',
       color: 'fill-accent-1',
-      url: '/about-me',
+      url: '/about',
     },
   ]
 

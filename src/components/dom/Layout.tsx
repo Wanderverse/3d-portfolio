@@ -7,8 +7,6 @@ const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 const Layout = ({ children }) => {
   const ref = useRef()
 
-  console.log('layout', children)
-
   return (
     <div
       ref={ref}

@@ -2,20 +2,13 @@
 import { useRef, useState, useEffect, useMemo } from 'react'
 import Message from '@/components/dom/Message'
 import { Message as MessageType } from '@/types/chat'
-import { fetchEventSource } from '@microsoft/fetch-event-source'
-import styles from '@/styles/Home.module.css'
-import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
 import { Document } from 'langchain/document'
-
 import dynamic from 'next/dynamic'
-const Chat = dynamic(() => import('@/components/dom/Chat').then((mod) => mod), { ssr: false })
-const Question = dynamic(() => import('@/components/dom/Question').then((mod) => mod), { ssr: false })
-const Answer = dynamic(() => import('@/components/dom/Answer').then((mod) => mod), { ssr: false })
-const PageLayout = dynamic(() => import('@/components/dom/PageLayout').then((mod) => mod), { ssr: false })
-const CameraScreen = dynamic(() => import('@/components/canvas/CameraScreen').then((mod) => mod.CameraScreen), {
-  ssr: false,
-})
+
+import Chat from '@/components/dom/Chat'
+import Question from '@/components/dom/Question'
+import Answer from '@/components/dom/Answer'
+
 type MainProps = {}
 
 const ChatContent = ({}: MainProps) => {
@@ -45,6 +38,14 @@ const ChatContent = ({}: MainProps) => {
   useEffect(() => {
     textAreaRef.current?.focus()
   }, [])
+
+  const scrollToBottom = () => {
+    messageListRef.current?.scrollTo(0, messageListRef.current.scrollHeight)
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages, pending]) // updated this to include pending in the dependencies
 
   //handle form submission
   async function handleSubmit(e: any) {
@@ -103,12 +104,7 @@ const ChatContent = ({}: MainProps) => {
           history: [...state.history, [question, data.text]],
         }))
       }
-      console.log('messageState', messageState)
-
       setLoading(false)
-
-      //scroll to bottom
-      messageListRef.current?.scrollTo(0, messageListRef.current.scrollHeight)
     } catch (error) {
       setLoading(false)
       setError('An error occurred while fetching the data. Please try again.')
@@ -149,7 +145,6 @@ const ChatContent = ({}: MainProps) => {
             disabled={loading}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            // onChange={(e: any) => setMessage(e.target.value)}
           />
         </div>
       </div>

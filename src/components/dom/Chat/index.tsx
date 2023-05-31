@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, forwardRef } from 'react'
 import Icon from '@/components/dom/Icon'
 import ModalShareChat from '@/components/dom/ModalShareChat'
 import Actions from './Actions'
@@ -10,9 +10,9 @@ type ChatProps = {
   children: React.ReactNode
 }
 
-const Chat = ({ title, children }: ChatProps) => {
+const Chat = forwardRef(({ title, children }: ChatProps, ref) => {
   const [favorite, setFavorite] = useState<boolean>(false)
-  const [visibleModal, setVisibleModal] = useState<boolean>(false)
+  // const [visibleModal, setVisibleModal] = useState<boolean>(false)
 
   return (
     <>
@@ -25,16 +25,18 @@ const Chat = ({ title, children }: ChatProps) => {
               name={favorite ? 'star-fill' : 'star'}
             />
           </button>
-          <button className='group w-8 h-8 ml-6 md:ml-3' onClick={() => setVisibleModal(true)}>
+          {/* <button className='group w-8 h-8 ml-6 md:ml-3' onClick={() => setVisibleModal(true)}>
             <Icon className='fill-n-4 transition-colors group-hover:fill-primary-1' name='share' />
-          </button>
+          </button> */}
           {/* <Actions /> */}
         </div>
       </div>
-      <div className='relative z-2 grow p-6 space-y-10 overflow-y-auto scroll-smooth scrollbar-none'>{children}</div>
-      <ModalShareChat visible={visibleModal} onClose={() => setVisibleModal(false)} />
+      <div ref={ref} className='relative z-2 grow p-6 space-y-10 overflow-y-auto scroll-smooth scrollbar-none'>
+        {children}
+      </div>
+      {/* <ModalShareChat visible={visibleModal} onClose={() => setVisibleModal(false)} /> */}
     </>
   )
-}
+})
 
 export default Chat

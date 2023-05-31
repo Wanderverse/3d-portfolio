@@ -1,3 +1,4 @@
+'use client'
 import * as THREE from 'three'
 import React, { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
@@ -5,20 +6,24 @@ import { useGLTF, MeshReflectorMaterial, Circle, Text, OrbitControls, Html, Mask
 import Particles from '@/helpers/shaders/Particles'
 import usePostprocessing from '@/helpers/shaders/usePostprocessing'
 import '@/helpers/shaders/materials/ScreenMaterial'
-import Embed from '../ChatBot/Embed'
-import dynamic from 'next/dynamic'
-
-const ChatContent = dynamic(() => import('@/components/canvas/ChatBot/ChatContent'), { ssr: false })
+import ChatContent from '@/chat/ChatContent'
+import { Bloom, EffectComposer } from '@react-three/postprocessing'
 
 function Button(props) {
   const { nodes, materials } = useGLTF('/arc-draco.glb')
   const [hovered, setHovered] = useState(false)
-  // useEffect(() => (document.body.style.cursor = hovered ? 'pointer' : 'auto'), [hovered])
+  const { active, colorActive = '#eeddff', colorInactive = '#514d54' } = props
+  const material = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(active ? colorActive : colorInactive),
+    roughness: 0.1,
+    metalness: 0.9,
+  })
   return (
     <mesh
       onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
       onPointerOut={() => setHovered(false)}
-      material={materials['black.001']}
+      // material={materials['black.001']}
+      material={material}
       geometry={nodes.Slice001.geometry}
       {...props}
     />
@@ -37,9 +42,9 @@ function Model(props) {
   const [virtualScene] = useState(() => new THREE.Scene())
   const screenProps = usePostprocessing(virtualScene, targetCamera.current)
 
-  const [b1, setB1] = useState(false)
+  const [b1, setB1] = useState(true)
   const [b2, setB2] = useState(false)
-  const [b3, setB3] = useState(false)
+  const [b3, setB3] = useState(true)
 
   const [color] = useState(() => new THREE.Color())
   const [pointer] = useState(() => new THREE.Vector3())
@@ -89,9 +94,21 @@ function Model(props) {
             </Text>
           </mesh>
           <group position={[0.06, 0, 0]}>
-            <Button onPointerUp={(e) => (e.stopPropagation(), setB1(!b1))} position={[b1 ? -0.04 : 0, 0, 0]} />
-            <Button onPointerUp={(e) => (e.stopPropagation(), setB2(!b2))} position={[b2 ? -0.04 : 0, -0.47, 0]} />
-            <Button onPointerUp={(e) => (e.stopPropagation(), setB3(!b3))} position={[b3 ? -0.04 : 0, -0.95, 0]} />
+            <Button
+              onPointerUp={(e) => (e.stopPropagation(), setB1(!b1))}
+              position={[b1 ? -0.04 : 0, 0, 0]}
+              active={b1}
+            />
+            <Button
+              onPointerUp={(e) => (e.stopPropagation(), setB2(!b2))}
+              position={[b2 ? -0.04 : 0, -0.47, 0]}
+              active={b2}
+            />
+            <Button
+              onPointerUp={(e) => (e.stopPropagation(), setB3(!b3))}
+              position={[b3 ? -0.04 : 0, -0.95, 0]}
+              active={b3}
+            />
           </group>
         </mesh>
         <group ref={arm} position={[0, 2, 1.92]}>
@@ -172,7 +189,7 @@ function Model(props) {
 
 export function CameraScreen({ portal }) {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [2, 5, 18], fov: 15, near: 1, far: 50 }}>
+    <Canvas dpr={[1, 2]} camera={{ position: [0, 5, 18], fov: 15, near: 1, far: 50 }}>
       <ambientLight intensity={2} />
       <color attach='background' args={['#28252d']} />
       <fog attach='fog' args={['#413f45', 20, 25]} />
@@ -190,6 +207,9 @@ export function CameraScreen({ portal }) {
         minAzimuthAngle={-Math.PI / 2}
         maxAzimuthAngle={Math.PI / 2}
       />
+      <EffectComposer>
+        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
+      </EffectComposer>
     </Canvas>
   )
 }
