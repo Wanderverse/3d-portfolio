@@ -43,19 +43,20 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
       title: 'Chat',
       icon: 'chat',
       color: 'fill-accent-2',
-      url: '/',
+      url: '/chat',
     },
     {
       title: 'Resume',
       icon: 'barcode',
       color: 'fill-primary-2',
+      url: '/',
       onClick: () => setVisibleSearch(true),
     },
     {
       title: 'About Me',
       icon: 'user-check',
       color: 'fill-accent-1',
-      url: '/updates-and-faq',
+      url: '/about-me',
     },
   ]
 
@@ -92,7 +93,7 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
           ></div> */}
           {/* <ChatList visible={value} items={chatList} /> */}
         </div>
-        <div className='absolute left-0 bottom-0 right-0 pb-6 px-4 bg-n-7 before:absolute before:left-0 before:right-0 before:bottom-full before:h-10 before:bg-gradient-to-t before:from-[#131617] before:to-[rgba(19,22,23,0)] before:pointer-events-none'>
+        <div className='absolute left-0 bottom-0 right-0 pb-6 px-4 bg-n-7 before:absolute before:left-0 before:right-0 before:bottom-full before:h-10 before:bg-gradient-to-t before:from-[#151317] before:to-[rgba(21, 19, 23, 0)] before:pointer-events-none'>
           <Profile visible={value} />
           <SendEmail visible={value} />
           <ToggleTheme visible={value} />

@@ -33,13 +33,14 @@ export default function Page() {
   const domContent = useRef()
   const containerRef = useRef()
   return (
-    <div ref={containerRef} className='content-container'>
+    <div ref={containerRef} style={{ borderRadius: '70px' }}>
       <div
         ref={domContent}
+        className='content-container'
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}
       />
       {/* <Dom domContent={domContent} containerRef={containerRef} /> */}
-      <CameraScreen />
+      <CameraScreen portal={domContent} />
       {/* <Canvas
         shadows
         flat

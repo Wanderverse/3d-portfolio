@@ -150,18 +150,47 @@
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
+  border-radius: 60px;
+  background-color: transparent;
+
+  /* overflow: hidden; */
 }
 
 .content-embed {
   position: relative;
-  background: white;
-  border-radius: 37.5px;
-  width: 375px;
-  height: 825px;
-  overflow: scroll;
+  background: transparent;
+  border-radius: 60px;
+  width: 800px;
+  height: 900px;
+  overflow: auto;
+  scroll-margin: 2rem;
+  scroll-behavior: smooth;
+}
+
+.screen-container {
+  background-color: transparent;
+  border-radius: 60px;
+  position: relative;
+  background: transparent;
+  border-radius: 60px;
+  width: 800px;
+  height: 900px;
+  overflow: auto;
+  scroll-margin: 2rem;
+  scroll-behavior: smooth;
+}
+
+.chatContent-enter {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chatContent-enter-active {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 /* canvas {
   position: absolute;
-  z-index: 1;
+  z-index: 5;
 } */

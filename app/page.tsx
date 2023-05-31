@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-const Logo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Logo), { ssr: false })
+const Logo = dynamic(() => import('@/components/canvas/Logo').then((mod) => mod), { ssr: false })
 const Landing = dynamic(() => import('@/components/canvas/Landing'), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,

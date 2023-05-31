@@ -37,11 +37,7 @@ const PageLayout = ({ smallSidebar, hideRightSidebar, backUrl, children }: Layou
         <title>Thien Nguyen</title>
       </Head>
       <div
-        // className={`pr-6 bg-n-7 md:p-0 md:bg-n-1 dark:md:bg-n-6 md:overflow-hidden ${
-
-        className={`pr-6 bg-n-7  ${
-          visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-24' : 'pl-80 md:pl-24'
-        }`}
+        className={`bg-n-6  ${visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-24' : 'pl-80 md:pl-24'}`}
       >
         <LeftSidebar
           value={visibleSidebar}
@@ -49,50 +45,11 @@ const PageLayout = ({ smallSidebar, hideRightSidebar, backUrl, children }: Layou
           visibleRightSidebar={visibleRightSidebar}
           smallSidebar={smallSidebar}
         />
-        <div className={`flex py-6 min-h-screen min-h-screen-ios `}>
-          <div className={`relative flex grow max-w-full bg-n-1 rounded-[1.25rem]  dark:bg-n-6`}>
-            <div className={`relative flex flex-col grow max-w-full `}>
-              {/* {!hideRightSidebar && (
-                <Burger
-                  className={`
-                                ${!visibleSidebar && "md:hidden"}
-                            `}
-                  visibleRightSidebar={visibleRightSidebar}
-                  onClick={() => setVisibleRightSidebar(!visibleRightSidebar)}
-                />
-              )} */}
-              {/* {hideRightSidebar && smallSidebar && (
-                <Link
-                  className="absolute top-6 right-6 flex justify-center items-center w-10 h-10 border-2 border-n-4/25 rounded-full text-0 transition-colors hover:border-transparent hover:bg-n-4/25"
-                  href={backUrl || "/"}
-                >
-                  <Icon className="fill-n-4" name="close" />
-                </Link>
-              )} */}
-              {children}
-            </div>
-            {/* {!hideRightSidebar && (
-              <RightSidebar
-                className={`
-                                ${
-                                  !visibleSidebar &&
-                                  "md:translate-x-64 md:before:absolute md:before:z-30 md:before:inset-0"
-                                }
-                            `}
-                visible={visibleRightSidebar}
-              />
-            )} */}
+        <div className={`flex  min-h-screen min-h-screen-ios `}>
+          <div className={`relative flex grow max-w-full bg-n-1 rounded-xl dark:bg-n-6`}>
+            <div className={`relative flex flex-col grow max-w-full `}>{children}</div>
           </div>
         </div>
-        {/* <div
-          className={twMerge(
-            `fixed inset-0 z-10 bg-n-7/80 invisible opacity-0 md:hidden ${
-              (!visibleSidebar && smallSidebar) ||
-              (visibleRightSidebar && "visible opacity-100")
-            }`
-          )}
-          onClick={handleClickOverlay}
-        ></div> */}
       </div>
     </>
   )

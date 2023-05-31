@@ -11,7 +11,6 @@ const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), { ssr: false })
 
 export const ChatBot = ({ portal, ...props }) => {
-  console.log('test', portal)
   let timeout = null
   const v = new THREE.Vector3()
   const wheel = useRef(0)

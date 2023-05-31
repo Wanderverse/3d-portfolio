@@ -10,7 +10,7 @@ export default function usePostprocessing(scene, camera, extra = []) {
       minFilter: THREE.LinearFilter,
       magFilter: THREE.LinearFilter,
       format: THREE.RGBAFormat,
-      encoding: gl.outputEncoding,
+      colorSpace: gl.outputColorSpace,
     }
     const renderTarget = new THREE.WebGLRenderTarget(800, 800, parameters)
 
