@@ -1,10 +1,9 @@
 'use client'
-
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import Landing from '@/components/canvas/Landing'
-import Logo from '@/components/canvas/Logo'
 
+const Landing = dynamic(() => import('@/components/canvas/Landing').then((mod) => mod), { ssr: false })
+const Logo = dynamic(() => import('@/components/canvas/Logo').then((mod) => mod), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => (
@@ -25,15 +24,12 @@ const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mo
 export default function Page() {
   return (
     <>
-      {/* <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'> */}
       <View className='flex h-full w-full flex-col items-center justify-center'>
         <Suspense fallback={null}>
-          <Logo route='/chat' scale={0.6} position={[0, 0, 0]} />
-          <Landing />
           <Common />
+          <Landing />
         </Suspense>
       </View>
-      {/* </div> */}
     </>
   )
 }

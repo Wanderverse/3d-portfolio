@@ -43,7 +43,7 @@ export default function Scroll({ children }) {
     const effectSub = addEffect((time) => lenis.raf(time))
     return () => {
       effectSub()
-      lenis.destroy()
+      // lenis.destroy()
     }
   }, [])
 

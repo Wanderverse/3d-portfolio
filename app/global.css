@@ -153,7 +153,7 @@
   border-radius: 60px;
   background-color: transparent;
 
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .content-embed {
@@ -187,7 +187,7 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-/* canvas {
+canvas {
   position: absolute;
-  z-index: 5;
-} */
+  z-index: -1;
+}

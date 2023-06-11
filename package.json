@@ -1,6 +1,6 @@
 {
-  "name": "Personal-GPT",
-  "version": "2.0.0",
+  "name": "personal-gpt",
+  "version": "1.0.0",
   "authors": [
     "Thien Nguyen"
   ],
@@ -18,15 +18,16 @@
     "@heroicons/react": "v1",
     "@microsoft/fetch-event-source": "^2.0.1",
     "@pinecone-database/pinecone": "^0.1.5",
-    "@react-spring/three": "^9.7.2",
+    "@react-three/csg": "^2.2.0",
     "@react-three/drei": "^9.65.3",
     "@react-three/fiber": "^8.12.0",
     "@react-three/postprocessing": "^2.11.4",
     "@rvxlab/tailwind-plugin-ios-full-height": "^1.1.0",
     "@splinetool/loader": "^0.9.339",
     "@splinetool/r3f-spline": "^1.0.2",
-    "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/react-spline": "2.2.6",
     "@splinetool/runtime": "^0.9.339",
+    "@studio-freight/lenis": "^1.0.14",
     "canvas-sketch-util": "^1.10.0",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
@@ -35,6 +36,7 @@
     "langchain": "^0.0.77",
     "next": "^13.4.3",
     "pdf-parse": "^1.1.1",
+    "postprocessing": "^6.31.0",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
@@ -48,8 +50,8 @@
     "scroll-lock": "^2.1.5",
     "tailwind-merge": "^1.12.0",
     "tailwind-scrollbar": "^3.0.4",
-    "three": "^0.152.2",
-    "three-stdlib": "^2.21.8",
+    "three": "^0.153.0",
+    "three-stdlib": "^2.21.11",
     "tunnel-rat": "^0.1.2"
   },
   "devDependencies": {

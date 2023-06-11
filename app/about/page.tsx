@@ -2,15 +2,12 @@
 import { Tab } from '@headlessui/react'
 import { useRouter } from 'next/navigation'
 import Icon from '@/components/dom/Icon'
-// import Updates from './Updates'
-// import Experience from './Experience'
-
 import { updates } from '@/mocks/updates'
 import { experience, faqs } from '@/mocks/faq'
 import dynamic from 'next/dynamic'
 import { useRef } from 'react'
-
-const PageLayout = dynamic(() => import('@/components/dom/PageLayout').then((mod) => mod), { ssr: false })
+import PageLayout from '@/components/dom/PageLayout'
+// const PageLayout = dynamic(() => import('@/components/dom/PageLayout').then((mod) => mod), { ssr: false })
 const Updates = dynamic(() => import('./Updates').then((mod) => mod), { ssr: false })
 const Experience = dynamic(() => import('./Experience').then((mod) => mod), { ssr: false })
 const Faq = dynamic(() => import('./Faq').then((mod) => mod), { ssr: false })

@@ -41,10 +41,11 @@ const nextConfig = {
       exclude: /node_modules/,
       use: ['raw-loader', 'glslify-loader'],
     })
-
     return config
   },
 }
+
+const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
 
 export default nextConfig
 // export default (_phase, { defaultConfig }) => {

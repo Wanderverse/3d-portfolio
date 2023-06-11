@@ -2,11 +2,20 @@
 import * as THREE from 'three'
 import React, { Suspense, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF, MeshReflectorMaterial, Circle, Text, OrbitControls, Html, Mask } from '@react-three/drei'
+import {
+  useGLTF,
+  MeshReflectorMaterial,
+  Circle,
+  Text,
+  OrbitControls,
+  Html,
+  Mask,
+  PerspectiveCamera,
+} from '@react-three/drei'
 import Particles from '@/helpers/shaders/Particles'
 import usePostprocessing from '@/helpers/shaders/usePostprocessing'
 import '@/helpers/shaders/materials/ScreenMaterial'
-import ChatContent from '@/chat/ChatContent'
+import ChatContent from '@/components/canvas/ChatContent'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 
 function Button(props) {
@@ -142,10 +151,9 @@ function Model(props) {
               id={1}
               colorWrite={false}
               depthWrite={false}
-              // material={materials['black.002']}
+              material={materials['black.002']}
               castShadow
               receiveShadow
-              // position={[-0.35, 0.25, 0.12]}
               ref={maskRef}
             >
               <Html
@@ -162,7 +170,7 @@ function Model(props) {
               >
                 <div className={`screen-container ${b1 ? 'chatContent-enter-active' : 'chatContent-enter'}`}>
                   <ChatContent />
-                </div>{' '}
+                </div>
               </Html>
             </Mask>
           </mesh>
@@ -189,16 +197,18 @@ function Model(props) {
 
 export function CameraScreen({ portal }) {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 5, 18], fov: 15, near: 1, far: 50 }}>
+    // <Canvas dpr={[1, 2]} camera={{ position: [0, 5, 18], fov: 15, near: 1, far: 50 }}>
+
+    <>
+      <PerspectiveCamera makeDefault fov={15} position={[0, 5, 18]} near={1} far={50} />
       <ambientLight intensity={2} />
       <color attach='background' args={['#28252d']} />
       <fog attach='fog' args={['#413f45', 20, 25]} />
       <directionalLight position={[10, -10, 10]} intensity={0.6} />
       <directionalLight position={[10, 10, 10]} intensity={0.5} />
-      <Suspense fallback={null}>
-        <Model portal={portal} position={[1.5, -1.4, 0]} rotation={[0, -Math.PI / 2, 0]} />
-      </Suspense>
+      <Model portal={portal} position={[1.5, -1.4, 0]} rotation={[0, -Math.PI / 2, 0]} />
       <OrbitControls
+        makeDefault
         enableZoom={false}
         enablePan={true}
         enableRotate={true}
@@ -207,9 +217,6 @@ export function CameraScreen({ portal }) {
         minAzimuthAngle={-Math.PI / 2}
         maxAzimuthAngle={Math.PI / 2}
       />
-      <EffectComposer>
-        <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-      </EffectComposer>
-    </Canvas>
+    </>
   )
 }

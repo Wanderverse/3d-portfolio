@@ -19,8 +19,6 @@ type NavigationProps = {
 
 const Navigation = ({ visible, items }: NavigationProps) => {
   const pathName = usePathname()
-
-  console.log('item.url', pathName)
   return (
     <div className={`${visible && 'px-2'}`}>
       {items.map((item, index) =>
