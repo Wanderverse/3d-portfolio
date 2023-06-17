@@ -198,7 +198,6 @@ function Model(props) {
 export function CameraScreen({ portal }) {
   return (
     // <Canvas dpr={[1, 2]} camera={{ position: [0, 5, 18], fov: 15, near: 1, far: 50 }}>
-
     <>
       <PerspectiveCamera makeDefault fov={15} position={[0, 5, 18]} near={1} far={50} />
       <ambientLight intensity={2} />

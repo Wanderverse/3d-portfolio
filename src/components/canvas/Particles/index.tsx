@@ -114,8 +114,8 @@ function Particles({ count, isNavigating }: ParticlesProps) {
   return (
     <>
       <instancedMesh args={[null, null, count]} ref={mesh}>
-        <dodecahedronBufferGeometry args={[0.09, 0]} />
-        <meshPhongMaterial attach='material' color='#24033d' ref={material} />
+        <dodecahedronBufferGeometry args={[0.05, 0]} />
+        <meshPhongMaterial attach='material' color='#ffffff' ref={material} />
       </instancedMesh>
     </>
   )

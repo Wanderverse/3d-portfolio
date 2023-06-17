@@ -1,28 +1,16 @@
 'use client'
 import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
-
 import { Toaster, resolveValue } from 'react-hot-toast'
-import { Inter, Karla } from 'next/font/google'
 import { ColorModeScript, ColorModeProvider } from '@chakra-ui/color-mode'
+import { Tomorrow } from 'next/font/google'
 
-const inter = Inter({
-  weight: ['500', '600', '700'],
+const tomorrow = Tomorrow({
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
   display: 'block',
-  variable: '--font-inter',
+  variable: '--font-tomorrow',
 })
-
-const karla = Karla({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'block',
-  variable: '--font-karla',
-})
-// export const metadata = {
-//   title: 'Next.js + Three.js',
-//   description: 'A minimal starter for Nextjs + React-three-fiber and Threejs.',
-// }
 
 export default function RootLayout({ children }) {
   return (
@@ -33,14 +21,14 @@ export default function RootLayout({ children }) {
       */}
       <style jsx global>{`
         html {
-          font-family: ${karla.style.fontFamily};
+          font-family: ${tomorrow.style.fontFamily};
         }
         #headlessui-portal-root {
-          font-family: ${inter.style.fontFamily};
+          font-family: ${tomorrow.style.fontFamily};
         }
       `}</style>
       <head />
-      <body className={`${karla.variable} ${inter.variable} font-sans bg-[#0e031a]`}>
+      <body className={`${tomorrow.variable} font-sans bg-[#0e031a]`}>
         {/* To avoid FOUT with styled-components wrap Layout with StyledComponentsRegistry https://beta.nextjs.org/docs/styling/css-in-js#styled-components */}
         <ColorModeProvider>
           <ColorModeScript initialColorMode='system' key='chakra-ui-no-flash' storageKey='chakra-ui-color-mode' />

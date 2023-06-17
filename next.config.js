@@ -29,7 +29,7 @@ const nextConfig = {
             publicPath: `${config.assetPrefix}/_next/static/images/`,
             // outputPath: `${isServer ? '../' : ''}static/images/`,
             name: '[name]-[hash].[ext]',
-            esModule: config.esModule || false,
+            // esModule: config.esModule || false,
           },
         },
       ],
@@ -44,8 +44,6 @@ const nextConfig = {
     return config
   },
 }
-
-const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
 
 export default nextConfig
 // export default (_phase, { defaultConfig }) => {

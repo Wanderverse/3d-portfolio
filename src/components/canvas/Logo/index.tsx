@@ -1,32 +1,19 @@
+'use client'
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import {
-  useGLTF,
-  Text,
-  Decal,
-  Edges,
-  Caustics,
-  Environment,
-  OrbitControls,
-  RenderTexture,
-  RandomizedLight,
-  PerspectiveCamera,
-  AccumulativeShadows,
-  MeshTransmissionMaterial,
-} from '@react-three/drei'
+import { Suspense, useEffect, useRef, useState, useTransition } from 'react'
+import { useFrame } from '@react-three/fiber'
+import { Caustics, Loader, MeshTransmissionMaterial } from '@react-three/drei'
 import { Geometry, Base, Subtraction } from '@react-three/csg'
 import { useRouter } from 'next/navigation'
 import useSpline from '@splinetool/r3f-spline'
+import { generateRandomInteger } from '@/utils/numberUtils'
 
-function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], ...props }) {
+function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setIsNavigating, isNavigating, ...props }) {
   const { nodes, materials } = useSpline('https://prod.spline.design/kg7ufWdVbqlqpwxE/scene.splinecode')
   const [transitionStart, setTransitionStart] = useState(false)
-
   const [hovered, hover] = useState(false)
   const router = useRouter()
   const sphereRef = useRef(null)
-  const decalRef = useRef(null)
   const portalRef = useRef(null)
   const sphereTargetScale = useRef(1) // non-hovered scale
 
@@ -51,16 +38,19 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], ...p
     if (transitionStart && sphereRef.current) {
       // Scale the sphere down to 0
       const currentScale = sphereRef.current.scale.x
-      const targetScale = 0 // Scale down to 0
+      let targetScale = 0 // Scale down to 0
       const newScale = THREE.MathUtils.lerp(currentScale, targetScale, delta)
       sphereRef.current.scale.set(newScale, newScale, newScale)
-
-      // Once the scale is close enough to 0, navigate to the new page
-      if (newScale < 0.55) {
-        router.push(route)
-      }
     }
   })
+
+  const handleRouting = () => {
+    setTimeout(() => {
+      setIsNavigating(false)
+      setTransitionStart(false)
+      router.push(route)
+    }, 2000)
+  }
 
   return (
     <Caustics color='#ffffff' lightSource={[5, 5, -10]} worldRadius={0.6} ior={1.2} intensity={0.2}>
@@ -69,9 +59,11 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], ...p
         geometry={nodes.Sphere.geometry}
         castShadow
         receiveShadow
-        scale={1}
+        scale={0}
         onClick={() => {
           setTransitionStart(true)
+          setIsNavigating(true)
+          handleRouting()
         }}
         onPointerOver={() => {
           if (!transitionStart) {
@@ -113,7 +105,7 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], ...p
             <group name='Button' position={[32.34, -130.02, 229.75]}>
               <group
                 name='Button.Animation'
-                position={[-305.51, 2000, -3783.41]}
+                position={[0, 2000, -3500.41]}
                 // rotation={[Math.PI / 2, 0, 0]}
                 scale={13.22}
               >
@@ -131,7 +123,7 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], ...p
                   material={materials.COLLECTIVE}
                   castShadow
                   receiveShadow
-                  position={[0, 0, 1.86]}
+                  position={[0, 0, 0]}
                   scale={1.2}
                 />
                 <mesh
@@ -180,25 +172,6 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], ...p
         </group>
       )}
     </Caustics>
-  )
-}
-
-function TickerTexture() {
-  const textRef = useRef()
-  useEffect(() => {
-    let count = 0
-    const interval = setInterval(() => {
-      if (++count > 99) count = 0
-      textRef.current.text = `${count}%`
-      textRef.current.sync()
-    }, 100)
-    return () => clearInterval(interval)
-  })
-  return (
-    <RenderTexture attach='map' anisotropy={16}>
-      <PerspectiveCamera makeDefault manual aspect={1 / 1} position={[1.5, 0, 5]} />
-      <Text anchorX='right' font='/Inter-Medium.woff' rotation={[0, Math.PI, 0]} ref={textRef} fontSize={1.5} />
-    </RenderTexture>
   )
 }
 

@@ -5,7 +5,7 @@ import { disablePageScroll, enablePageScroll } from 'scroll-lock'
 import Logo from '@/components/dom/Logo'
 import Icon from '@/components/dom/Icon'
 import Modal from '@/components/dom/Modal'
-import Search from '@/components/dom/Search'
+import Resume from '@/components/dom/Resume'
 import Navigation from './Navigation'
 import Profile from './Profile'
 import ToggleTheme from './ToggleTheme'
@@ -22,7 +22,6 @@ type LeftSidebarProps = {
 
 const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: LeftSidebarProps) => {
   const [visibleSearch, setVisibleSearch] = useState<boolean>(false)
-  const [visibleSettings, setVisibleSettings] = useState<boolean>(false)
 
   useEffect(() => {
     window.addEventListener('keydown', handleWindowKeyDown)
@@ -49,7 +48,7 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
       title: 'Resume',
       icon: 'barcode',
       color: 'fill-primary-2',
-      url: '/',
+      // url: '/',
       onClick: () => setVisibleSearch(true),
     },
     {
@@ -100,14 +99,14 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
         </div>
       </div>
       <Modal
-        className='md:!p-0'
+        className='md:!p-0 h-100'
         classWrap='md:min-h-screen-ios dark:shadow-[inset_0_0_0_0.0625rem_#232627,0_2rem_4rem_-1rem_rgba(0,0,0,0.33)] dark:md:shadow-none'
-        classButtonClose='hidden md:flex md:absolute md:top-6 md:left-6 dark:fill-n-1'
+        classButtonClose='hidden flex absolute top-6 left-6 dark:fill-n-1'
         classOverlay='md:bg-n-1'
         visible={visibleSearch}
         onClose={() => setVisibleSearch(false)}
       >
-        <Search items={resultSearch} />
+        <Resume />
       </Modal>
     </>
   )

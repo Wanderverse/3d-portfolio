@@ -1,9 +1,8 @@
 'use client'
-import { useRef, useState, useEffect, useMemo } from 'react'
+import { useRef, useState, useEffect, useMemo, memo } from 'react'
 import Message from '@/components/dom/Message'
 import { Message as MessageType } from '@/types/chat'
 import { Document } from 'langchain/document'
-import dynamic from 'next/dynamic'
 
 import Chat from '@/components/dom/Chat'
 import Question from '@/components/dom/Question'
@@ -125,7 +124,7 @@ const ChatContent = ({}: MainProps) => {
   }, [messages, pending])
 
   return (
-    <div className={`flex h-full p-6`}>
+    <div className={`flex h-full p-6 bg-n-1 dark:bg-n-8`}>
       <div className={`relative flex grow max-w-full `}>
         <div className={`relative flex flex-col grow max-w-full `}>
           <Chat ref={messageListRef} title='PersonalGPT'>
@@ -152,4 +151,4 @@ const ChatContent = ({}: MainProps) => {
   )
 }
 
-export default ChatContent
+export default memo(ChatContent)

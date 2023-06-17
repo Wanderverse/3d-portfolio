@@ -71,7 +71,7 @@ module.exports = {
         DEFAULT: 'linear',
       },
       fontFamily: {
-        sans: ['var(--font-karla)', ...fontFamily.sans],
+        sans: ['var(--font-tomorrow)', ...fontFamily.sans],
         inter: 'var(--font-inter)',
       },
       fontSize: {

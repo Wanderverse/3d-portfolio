@@ -4,6 +4,7 @@ import { enablePageScroll, clearQueueScrollLocks } from 'scroll-lock'
 import Head from 'next/head'
 import { useMediaQuery } from 'react-responsive'
 import LeftSidebar from '@/components/dom/LeftSidebar'
+import { twMerge } from 'tailwind-merge'
 
 type LayoutProps = {
   smallSidebar?: boolean
@@ -37,22 +38,35 @@ const PageLayout = ({ smallSidebar, hideRightSidebar, backUrl, children }: Layou
         <title>Thien Nguyen</title>
       </Head>
       <div
-        className={`bg-n-6  ${visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-24' : 'pl-80 md:pl-24'}`}
+        className={` md:p-0 md:bg-n-1 dark:md:bg-n-6 ${
+          visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-0' : 'pl-80 md:pl-0'
+        }`}
       >
+        {/* <div
+        className={`bg-n-6  ${visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-80 md:pl-24' : 'pl-80 md:pl-24'}`}
+      > */}
         <LeftSidebar
           value={visibleSidebar}
           setValue={setVisibleSidebar}
           visibleRightSidebar={visibleRightSidebar}
           smallSidebar={smallSidebar}
         />
-        <div className={`flex  min-h-screen min-h-screen-ios `}>
-          <div className={`relative flex grow max-w-full bg-n-1 rounded-xl dark:bg-n-6`}>
+        <div className={`flex  min-h-screen min-h-screen-ios  `}>
+          <div className={`relative flex grow max-w-full bg-n-1  dark:bg-n-6`}>
             <div className={`relative flex flex-col grow max-w-full `}>{children}</div>
           </div>
         </div>
       </div>
+      <div
+        className={twMerge(
+          `fixed inset-0 z-10 bg-n-7/80 invisible opacity-0 md:hidden ${
+            (!visibleSidebar && smallSidebar) || (visibleRightSidebar && 'visible opacity-100')
+          }`,
+        )}
+        onClick={handleClickOverlay}
+      ></div>
+      {/* </div> */}
     </>
   )
 }
-
 export default PageLayout

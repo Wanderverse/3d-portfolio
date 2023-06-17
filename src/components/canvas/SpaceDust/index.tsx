@@ -71,7 +71,7 @@ const SpaceDust: React.FC<SpaceDustProps> = ({ count }) => {
     <>
       <pointLight ref={light} distance={40} intensity={8} color='white' />
       <instancedMesh ref={mesh} args={[null, null, count]}>
-        <dodecahedronBufferGeometry args={[0.1, 0]} />
+        <dodecahedronBufferGeometry args={[0.05, 0]} />
         <meshPhongMaterial color='#7556ba' />
       </instancedMesh>
     </>

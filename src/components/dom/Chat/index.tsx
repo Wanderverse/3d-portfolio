@@ -17,7 +17,7 @@ const Chat = forwardRef(({ title, children }: ChatProps, ref) => {
   return (
     <>
       <div className='flex items-center min-h-[4.5rem] px-10 py-3 border-b border-n-3 shadow-[0_0.75rem_2.5rem_-0.75rem_rgba(0,0,0,0.06)] dark:border-n-5 dark:shadow-[0_0.75rem_2.5rem_-0.75rem_rgba(0,0,0,0.15)]'>
-        <div className='mr-auto h5 truncate'>{title}</div>
+        <div className='mr-auto h5 truncate text-n-6 dark:text-n-3'>{title}</div>
         <div className='flex items-center ml-6'>
           <button className='group w-8 h-8' onClick={() => setFavorite(!favorite)}>
             <Icon

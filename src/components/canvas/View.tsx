@@ -1,9 +1,8 @@
 'use client'
 
 import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
-import { Environment, Lightformer, OrbitControls, PerspectiveCamera, View as ViewImpl } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera, View as ViewImpl } from '@react-three/drei'
 import { Three } from '@/helpers/components/Three'
-import { Bloom, ChromaticAberration, EffectComposer } from '@react-three/postprocessing'
 
 export const Common = ({ color }) => (
   <Suspense fallback={null}>
