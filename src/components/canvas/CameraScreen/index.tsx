@@ -66,7 +66,7 @@ function Model(props) {
   return (
     <>
       <group ref={group} {...props} dispose={null}>
-        <mesh
+        {/* <mesh
           material={materials.black}
           geometry={nodes.Cube.geometry}
           position={[0, 1, 0]}
@@ -119,13 +119,13 @@ function Model(props) {
               active={b3}
             />
           </group>
-        </mesh>
-        <group ref={arm} position={[0, 2, 1.92]}>
+        </mesh> */}
+        <group ref={arm} position={[0, 1.7, 1.92]}>
           <mesh
             geometry={nodes.Plane.geometry}
             material={materials['Material.004']}
             onPointerMove={(e) => pointer.copy(e.point)}
-            scale={[2.2, 1, 1.2]}
+            scale={[1.7, 2, 0.78]}
             material-roughness={0.6}
             material-metalness={0.5}
             material-color='#cfc6db'
@@ -197,7 +197,6 @@ function Model(props) {
 
 export function CameraScreen({ portal }) {
   return (
-    // <Canvas dpr={[1, 2]} camera={{ position: [0, 5, 18], fov: 15, near: 1, far: 50 }}>
     <>
       <PerspectiveCamera makeDefault fov={15} position={[0, 5, 18]} near={1} far={50} />
       <ambientLight intensity={2} />

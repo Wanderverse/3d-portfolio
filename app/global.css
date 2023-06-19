@@ -17,7 +17,7 @@
     overflow: hidden;
   }
 }
-
+/* 
 @layer components {
   .react-datepicker {
     @apply !border-n-3 !rounded-lg !font-inter shadow-[0_0_1rem_0.25rem_rgba(0,0,0,0.04),0_2rem_2rem_-1rem_rgba(0,0,0,0.1)] overflow-hidden dark:bg-n-7 dark:!border-n-5;
@@ -142,7 +142,7 @@
   .multiselect .multiselect__option--is-focused {
     @apply bg-n-3/50 dark:bg-n-6;
   }
-}
+} */
 
 .content-container {
   position: relative;
@@ -158,12 +158,14 @@
 .content-embed {
   position: relative;
   background: transparent;
+  background-color: transparent;
   border-radius: 65px;
-  width: 770px;
-  height: 900px;
-  overflow: auto;
+  width: 600px;
+  height: 96vh;
+  overflow: hidden;
   scroll-margin: 2rem;
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 .screen-container {
@@ -188,7 +190,7 @@
 
 canvas {
   /* position: absolute; */
-  z-index: 0;
+  z-index: 2;
 }
 
 /* For pdf */

@@ -15,8 +15,9 @@ const Layout = ({ children }) => {
         width: ' 100%',
         height: '100%',
         overflow: 'auto',
-        touchAction: 'none',
-        zIndex: 0,
+        touchAction: 'auto',
+        pointerEvents: 'auto',
+        // zIndex: 0,
       }}
     >
       {children}
@@ -27,6 +28,7 @@ const Layout = ({ children }) => {
           left: 0,
           width: '100vw',
           height: '100vh',
+          PointerEvents: 'none',
         }}
         eventSource={ref}
         eventPrefix='client'

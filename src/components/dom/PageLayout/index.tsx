@@ -7,13 +7,14 @@ import LeftSidebar from '@/components/dom/LeftSidebar'
 import { twMerge } from 'tailwind-merge'
 
 type LayoutProps = {
+  noPadding?: boolean
   smallSidebar?: boolean
   hideRightSidebar?: boolean
   backUrl?: string
   children: React.ReactNode
 }
 
-const PageLayout = ({ smallSidebar, hideRightSidebar, backUrl, children }: LayoutProps) => {
+const PageLayout = ({ noPadding = false, smallSidebar, hideRightSidebar, backUrl, children }: LayoutProps) => {
   const [visibleSidebar, setVisibleSidebar] = useState<any>(smallSidebar || false)
   const [visibleRightSidebar, setVisibleRightSidebar] = useState<boolean>(false)
 
@@ -28,6 +29,13 @@ const PageLayout = ({ smallSidebar, hideRightSidebar, backUrl, children }: Layou
     enablePageScroll()
   }
 
+  const padding = () => {
+    if (noPadding) return ''
+    else return visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-24' : 'pl-80 md:pl-24'
+  }
+
+  console.log('padding', padding())
+
   useEffect(() => {
     setVisibleSidebar(smallSidebar || isDesktop)
   }, [isDesktop, smallSidebar])
@@ -37,11 +45,7 @@ const PageLayout = ({ smallSidebar, hideRightSidebar, backUrl, children }: Layou
       <Head>
         <title>Thien Nguyen</title>
       </Head>
-      <div
-        className={` md:p-0 md:bg-n-1 dark:md:bg-n-6 ${
-          visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-0' : 'pl-80 md:pl-0'
-        }`}
-      >
+      <div className={` md:p-0 md:bg-n-1 dark:md:bg-n-6 ${padding()}`}>
         {/* <div
         className={`bg-n-6  ${visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-80 md:pl-24' : 'pl-80 md:pl-24'}`}
       > */}

@@ -28,7 +28,7 @@ const Main = () => {
   return (
     <Suspense fallback={<Loader dotVariant={generateRandomInteger(0, 11)} />}>
       <PageLayout>
-        <div className='content-container p-10' ref={containerRef}>
+        <div className=' p-10' ref={containerRef}>
           <div className='max-w-[58.5rem] mx-auto'>
             <div className='mb-4 h2 md:pr-16 md:h3'>About Me</div>
             <div className='mb-12 body2 text-n-4 md:mb-6 '>
