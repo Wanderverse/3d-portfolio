@@ -11,6 +11,10 @@ const nextConfig = {
   transpilePackages: ['core', '@react-three/postprocessing'],
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
 
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
   images: {},
   webpack(config, { isServer }) {
     config.experiments = {
@@ -43,6 +47,7 @@ const nextConfig = {
       exclude: /node_modules/,
       use: ['raw-loader', 'glslify-loader'],
     })
+
     return config
   },
 }

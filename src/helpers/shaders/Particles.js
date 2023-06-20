@@ -28,13 +28,22 @@ const Particles = React.forwardRef(({ speed = 1 }, ref) => {
   useFrame((state) => {
     geom.current.material.uniforms.time.value = state.clock.elapsedTime
     geom.current.geometry.verticesNeedUpdate = true
-    geom.current.material.uniforms.speed.value = THREE.MathUtils.lerp(geom.current.material.uniforms.speed.value, speed, 0.1)
+    geom.current.material.uniforms.speed.value = THREE.MathUtils.lerp(
+      geom.current.material.uniforms.speed.value,
+      speed,
+      0.1,
+    )
   })
 
   return (
     <points ref={geom} position={[50, -15, 0]} rotation={[-Math.PI / 2.4, 0, Math.PI / 2.5]}>
       <bufferGeometry>
-        <bufferAttribute attachObject={['attributes', 'position']} count={coords.length / 3} array={coords} itemSize={3} />
+        <bufferAttribute
+          attachObject={['attributes', 'position']}
+          count={coords.length / 3}
+          array={coords}
+          itemSize={3}
+        />
         <bufferAttribute attachObject={['attributes', 'size']} count={sizes.length} array={sizes} itemSize={1} />
       </bufferGeometry>
       <dotMaterial ref={ref} />
@@ -42,4 +51,5 @@ const Particles = React.forwardRef(({ speed = 1 }, ref) => {
   )
 })
 
+Particles.displayName = 'Particles'
 export default Particles

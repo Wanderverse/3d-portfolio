@@ -15,10 +15,11 @@ type MessageProps = {
   document?: any
   onSubmit?: any
   onEnter?: any
+  disabled?: boolean
 }
 
 const Message = forwardRef(
-  ({ value, onChange, placeholder, image, document, onSubmit, onEnter }: MessageProps, ref) => {
+  ({ value, onChange, placeholder, image, document, onSubmit, onEnter, disabled }: MessageProps, ref) => {
     const stylesButton = 'group absolute right-3 bottom-2 w-10 h-10'
 
     return (
@@ -36,6 +37,7 @@ const Message = forwardRef(
               placeholder={placeholder || 'Ask me anything'}
               onKeyDown={onEnter}
               ref={ref}
+              disabled={disabled}
             />
             {value === '' ? (
               <button className={`${stylesButton}`}>
@@ -56,4 +58,5 @@ const Message = forwardRef(
   },
 )
 
+Message.displayName = 'Message'
 export default Message

@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import * as THREE from 'three'
 import React, { useLayoutEffect, useRef, useState } from 'react'

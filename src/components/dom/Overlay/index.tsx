@@ -61,7 +61,7 @@ const Overlay = () => {
             <span className='text-[30px] font-normal'>Hello__</span>
             <span style={{ height: 30, fontSize: 30, textAlign: 'right', color: '' }}>⎑</span>
           </div>
-          <span>I'm</span>
+          <span>{`I'm`}</span>
           <span className='text-purple-600 text-6xl font-bold'> THIEN NGUYEN</span>
           <Trail open={open}>
             <span className='mt-10 mb-0 font-normal leading-tight text-2xl tracking-tight'>
@@ -161,7 +161,7 @@ const Overlay = () => {
           className='full'
           style={{ whiteSpace: 'nowrap', flex: '1 1 0%', fontSize: 12, lineHeight: '1.5em', color: '' }}
         >
-          <b>A Creative Coder's Journey</b>
+          <b>{`A Creative Coder's Journey`}</b>
           <br />
           Where Technology Meets Imagination
         </p>

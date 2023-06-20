@@ -36,7 +36,7 @@ const Answer = ({ children, loading, time }: AnswerProps) => {
         ) : (
           <div className='flex items-center'>
             <div className='caption1 text-n-4/50 dark:text-n-4'>{time}</div>
-            <Actions text={children} />
+            <Actions text={children.toString()} />
           </div>
         )}
       </div>

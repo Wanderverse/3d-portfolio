@@ -2,8 +2,8 @@
 
 import { useState, forwardRef } from 'react'
 import Icon from '@/components/dom/Icon'
-import ModalShareChat from '@/components/dom/ModalShareChat'
-import Actions from './Actions'
+// import ModalShareChat from '@/components/dom/ModalShareChat'
+// import Actions from './Actions'
 
 type ChatProps = {
   title: string
@@ -39,4 +39,5 @@ const Chat = forwardRef(({ title, children }: ChatProps, ref) => {
   )
 })
 
+Chat.displayName = 'Chat'
 export default Chat
