@@ -1,21 +1,28 @@
 'use client'
 
 import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
-import { OrbitControls, PerspectiveCamera, View as ViewImpl } from '@react-three/drei'
+import {
+  OrbitControls,
+  OrthographicCamera,
+  PerspectiveCamera,
+  PresentationControls,
+  View as ViewImpl,
+} from '@react-three/drei'
 import { Three } from '@/helpers/components/Three'
 
-export const Common = ({ color }) => (
+export const Common = ({ color, camera = <PerspectiveCamera makeDefault fov={80} position={[0, 0, 4]} /> }) => (
   <Suspense fallback={null}>
     {color && <color attach='background' args={[color]} />}
     <ambientLight intensity={1} color={'#ba52ff'} />
     <pointLight position={[20, 30, 10]} intensity={1} />
     <pointLight position={[-10, -10, -10]} intensity={1} color='#7700ff' />
     <pointLight distance={100} intensity={1} color='white' />
-    <PerspectiveCamera makeDefault fov={70} position={[0, 0, 6]} />
+    {camera}
+    {/* <OrbitControls makeDefault enableZoom={true} /> */}
   </Suspense>
 )
 
-const View = forwardRef(({ children, orbit, ...props }, ref) => {
+const View = forwardRef(({ children, orbit, presentation, ...props }, ref) => {
   const localRef = useRef(null)
   useImperativeHandle(ref, () => localRef.current)
 
@@ -24,8 +31,8 @@ const View = forwardRef(({ children, orbit, ...props }, ref) => {
       <div ref={localRef} {...props} />
       <Three>
         <ViewImpl track={localRef}>
+          {orbit && <OrbitControls makeDefault enableZoom={true} />}
           {children}
-          {orbit && <OrbitControls />}
         </ViewImpl>
       </Three>
     </>

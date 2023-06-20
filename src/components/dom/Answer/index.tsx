@@ -14,7 +14,7 @@ type AnswerProps = {
 const Answer = ({ children, loading, time }: AnswerProps) => {
   return (
     <div className='max-w-[50rem]'>
-      <div className='pt-6 px-6 pb-16 space-y-4 bg-n-2 rounded-[1.25rem] dark:bg-n-7'>
+      <div className='pt-6 px-6 pb-16 space-y-4 bg-n-2 text-lg dark:text-n-1 rounded-[1.25rem] dark:bg-n-5'>
         {loading ? <Loading /> : children}
       </div>
       <div className='-mt-8 flex items-end pl-6'>
@@ -36,7 +36,7 @@ const Answer = ({ children, loading, time }: AnswerProps) => {
         ) : (
           <div className='flex items-center'>
             <div className='caption1 text-n-4/50 dark:text-n-4'>{time}</div>
-            <Actions />
+            <Actions text={children} />
           </div>
         )}
       </div>

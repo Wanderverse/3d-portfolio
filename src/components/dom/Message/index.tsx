@@ -28,7 +28,7 @@ const Message = forwardRef(
           <div className='relative flex items-center min-h-[3.5rem] px-16 text-0'>
             <AddFile />
             <TextareaAutosize
-              className='w-full py-3 bg-transparent body2 text-n-7 outline-none resize-none placeholder:text-n-4/75 dark:text-n-1 dark:placeholder:text-n-4'
+              className='w-full  text-2xl py-3 bg-transparent body2 text-n-7 outline-none resize-none placeholder:text-n-7 dark:text-n-1 dark:placeholder:text-n-4'
               maxRows={5}
               autoFocus
               value={value}

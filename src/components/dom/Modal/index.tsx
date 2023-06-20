@@ -69,7 +69,7 @@ const Modal = ({
             {children}
             <button
               className={twMerge(
-                `text-0 fill-n-7 hover:fill-primary-1 ${
+                `text-0 fill-n-7 hover:fill-primary-1 z-20 ${
                   video && 'absolute top-6 right-6 w-10 h-10 bg-n-1 rounded-full'
                 } ${classButtonClose}`,
               )}

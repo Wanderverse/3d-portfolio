@@ -100,13 +100,12 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
       </div>
       <Modal
         className='md:!p-0 h-100'
-        classWrap='md:min-h-screen-ios dark:shadow-[inset_0_0_0_0.0625rem_#232627,0_2rem_4rem_-1rem_rgba(0,0,0,0.33)] dark:md:shadow-none'
-        classButtonClose='hidden flex absolute top-6 left-6 dark:fill-n-1'
-        classOverlay='md:bg-n-1'
+        classWrap=' bg-n-7 md:min-h-screen-ios shadow-[inset_0_0_0_0.0625rem_#232627,0_2rem_4rem_-1rem_rgba(0,0,0,0.33)] '
+        classButtonClose='hidden flex absolute top-6 left-6 fill-n-1'
         visible={visibleSearch}
         onClose={() => setVisibleSearch(false)}
       >
-        <Resume />
+        <Resume onClose={() => setVisibleSearch(false)} />
       </Modal>
     </>
   )

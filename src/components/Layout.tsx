@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import dynamic from 'next/dynamic'
-const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: false })
+const Scene = dynamic(() => import('@/components/Scene'), { ssr: false })
 
 const Layout = ({ children }) => {
   const ref = useRef()
@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
         overflow: 'auto',
         touchAction: 'auto',
         pointerEvents: 'auto',
-        // zIndex: 0,
+        zIndex: 0,
       }}
     >
       {children}
@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
           left: 0,
           width: '100vw',
           height: '100vh',
-          PointerEvents: 'none',
+          pointerEvents: 'none',
         }}
         eventSource={ref}
         eventPrefix='client'

@@ -7,9 +7,9 @@ import Image from '@/components/dom/Image'
 import Notify from '@/components/dom/Notify'
 import ModalShareChat from '@/components/dom/ModalShareChat'
 
-type ActionsProps = {}
+type ActionsProps = { text: string }
 
-const Actions = ({}: ActionsProps) => {
+const Actions = ({ text }: ActionsProps) => {
   const [copied, setCopied] = useState<boolean>(false)
   const [share, setShare] = useState<boolean>(false)
   const [archive, setArchive] = useState<boolean>(false)
@@ -36,12 +36,12 @@ const Actions = ({}: ActionsProps) => {
   }
 
   const styleButton: string =
-    'h-6 ml-3 px-2 bg-n-3 rounded-md caption1 txt-n-6 transition-colors hover:text-primary-1 dark:bg-n-7'
+    'text-sm h-6 ml-3 px-2 bg-n-3 rounded-md caption1 txt-n-6 transition-colors hover:text-primary-1 dark:bg-n-7'
 
   return (
     <>
-      <CopyToClipboard text='Content' onCopy={onCopy}>
-        <button className={`${styleButton} md:hidden`}>Copy</button>
+      <CopyToClipboard text={text} onCopy={onCopy}>
+        <button className={`${styleButton}`}>Copy</button>
       </CopyToClipboard>
       <button className={styleButton}>Regenerate response</button>
       <ModalShareChat visible={visibleModal} onClose={() => setVisibleModal(false)} />

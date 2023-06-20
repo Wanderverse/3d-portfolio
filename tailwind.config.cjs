@@ -28,25 +28,25 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          1: '#0084FF',
-          2: '#3FDD78',
+          1: '#5e24bb',
+          2: '#38eae4',
         },
         accent: {
-          1: '#D84C10',
-          2: '#3E90F0',
+          1: '#d84c10',
+          2: '#615efd',
           3: '#8E55EA',
           4: '#8C6584',
           5: '#DDA73F',
         },
         n: {
           1: '#fefefe',
-          2: '#f5f3f7',
-          3: '#ebe8ef',
+          2: '#e8e3ed',
+          3: '#cec4db',
           4: '#5d5966',
-          5: '#36333b',
-          6: '#252327',
-          7: '#141316',
-          8: '#100f12',
+          5: '#35244e',
+          6: '#2e1b45',
+          7: '#170e29',
+          8: '#0b0811',
         },
       },
       spacing: {
@@ -115,7 +115,7 @@ module.exports = {
           '@apply text-[1rem]': {},
         },
         body: {
-          '@apply bg-n-7 text-[1rem] leading-6 -tracking-[.01em] text-n-7 antialiased md:bg-n-1 dark:text-n-1 dark:md:bg-n-6':
+          '@apply bg-n-7 text-[1rem] leading-6 -tracking-[.01em] text-n-7 antialiased md:bg-n-3 dark:text-n-1 dark:bg-n-8':
             {},
         },
       })

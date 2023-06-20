@@ -22,6 +22,7 @@ const Overlay = () => {
 
   return (
     <div
+      className='text-n-2'
       style={{
         position: 'absolute',
         top: 0,
@@ -106,7 +107,7 @@ const Overlay = () => {
               <b>—</b>
             </p>
 
-            <p
+            {/* <p
               style={{
                 transform: 'rotate3d(0, 0, 1, 90deg) translate3d(100%,10px,0)',
                 transformOrigin: 'right',
@@ -118,8 +119,8 @@ const Overlay = () => {
                 whiteSpace: 'nowrap',
               }}
             >
-              DRAG POINTER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ●
-            </p>
+              Responsive Pointer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ●
+            </p> */}
           </div>
         </div>
         <div style={{ flex: '1 1 0%', display: 'flex', gap: '2em' }}></div>

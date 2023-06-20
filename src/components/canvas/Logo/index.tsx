@@ -1,12 +1,11 @@
 'use client'
 import * as THREE from 'three'
-import { Suspense, useEffect, useRef, useState, useTransition } from 'react'
+import { useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { Caustics, Loader, MeshTransmissionMaterial } from '@react-three/drei'
+import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei'
 import { Geometry, Base, Subtraction } from '@react-three/csg'
 import { useRouter } from 'next/navigation'
 import useSpline from '@splinetool/r3f-spline'
-import { generateRandomInteger } from '@/utils/numberUtils'
 
 function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setIsNavigating, isNavigating, ...props }) {
   const { nodes, materials } = useSpline('https://prod.spline.design/kg7ufWdVbqlqpwxE/scene.splinecode')
@@ -41,19 +40,22 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
       let targetScale = 0 // Scale down to 0
       const newScale = THREE.MathUtils.lerp(currentScale, targetScale, delta)
       sphereRef.current.scale.set(newScale, newScale, newScale)
+
+      if (newScale < 0.55) {
+        handleRouting()
+      }
     }
   })
 
   const handleRouting = () => {
-    setTimeout(() => {
-      setIsNavigating(false)
-      setTransitionStart(false)
-      router.push(route)
-    }, 2000)
+    setIsNavigating(false)
+    setTransitionStart(false)
+    router.push(route)
   }
 
   return (
-    <Caustics color='#ffffff' lightSource={[5, 5, -10]} worldRadius={0.6} ior={1.2} intensity={0.2}>
+    // <Caustics color='tran#ffffff' lightSource={[5, 5, -10]} worldRadius={0.6} ior={1.2} intensity={0.2}>
+    <group {...props}>
       <mesh
         name='Sphere'
         geometry={nodes.Sphere.geometry}
@@ -63,7 +65,6 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
         onClick={() => {
           setTransitionStart(true)
           setIsNavigating(true)
-          handleRouting()
         }}
         onPointerOver={() => {
           if (!transitionStart) {
@@ -89,14 +90,13 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
           distortionScale={1}
           color='#8844bf'
           resolution={1024}
-          thickness={5}
+          thickness={10}
           backsideThickness={5}
-          anisotropicBlur={5}
           backside={true}
-          roughness={0.5}
+          roughness={0.2}
           ior={0.95}
           chromaticAberration={2}
-          transmission={hovered ? 1.6 : 1.4}
+          transmission={hovered ? 1.6 : 1.3}
         />
       </mesh>
       {hovered && (
@@ -171,8 +171,11 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
           </group>
         </group>
       )}
-    </Caustics>
+    </group>
   )
 }
 
 export default Logo
+
+// useGLTF.preload('https://prod.spline.design/kg7ufWdVbqlqpwxE/scene.splinecode')
+// useGLTF.preload('/arc-draco.glb')

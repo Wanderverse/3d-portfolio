@@ -8,6 +8,8 @@ const nextConfig = {
     reactRoot: 'concurrent',
     appDir: true,
   },
+  transpilePackages: ['core', '@react-three/postprocessing'],
+  reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
 
   images: {},
   webpack(config, { isServer }) {
@@ -29,7 +31,7 @@ const nextConfig = {
             publicPath: `${config.assetPrefix}/_next/static/images/`,
             // outputPath: `${isServer ? '../' : ''}static/images/`,
             name: '[name]-[hash].[ext]',
-            // esModule: config.esModule || false,
+            esModule: config.esModule || false,
           },
         },
       ],

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { enablePageScroll, clearQueueScrollLocks } from 'scroll-lock'
 import Head from 'next/head'
 import { useMediaQuery } from 'react-responsive'
@@ -34,8 +34,6 @@ const PageLayout = ({ noPadding = false, smallSidebar, hideRightSidebar, backUrl
     else return visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-24 md:pl-24' : 'pl-80 md:pl-24'
   }
 
-  console.log('padding', padding())
-
   useEffect(() => {
     setVisibleSidebar(smallSidebar || isDesktop)
   }, [isDesktop, smallSidebar])
@@ -45,7 +43,7 @@ const PageLayout = ({ noPadding = false, smallSidebar, hideRightSidebar, backUrl
       <Head>
         <title>Thien Nguyen</title>
       </Head>
-      <div className={` md:p-0 md:bg-n-1 dark:md:bg-n-6 ${padding()}`}>
+      <div className={`  md:bg-n-1 dark:md:bg-n-7 ${padding()}`}>
         {/* <div
         className={`bg-n-6  ${visibleSidebar ? 'pl-24 md:pl-24' : smallSidebar ? 'pl-80 md:pl-24' : 'pl-80 md:pl-24'}`}
       > */}
@@ -56,7 +54,7 @@ const PageLayout = ({ noPadding = false, smallSidebar, hideRightSidebar, backUrl
           smallSidebar={smallSidebar}
         />
         <div className={`flex  min-h-screen min-h-screen-ios  `}>
-          <div className={`relative flex grow max-w-full bg-n-1  dark:bg-n-6`}>
+          <div className={`relative flex grow max-w-full bg-n-3 dark:bg-transparent`}>
             <div className={`relative flex flex-col grow max-w-full `}>{children}</div>
           </div>
         </div>
@@ -73,4 +71,4 @@ const PageLayout = ({ noPadding = false, smallSidebar, hideRightSidebar, backUrl
     </>
   )
 }
-export default PageLayout
+export default memo(PageLayout)

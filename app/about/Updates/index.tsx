@@ -30,7 +30,7 @@ const Updates = ({ items }: UpdatesProps) => {
                 <Icon className='fill-accent-1' name={item.icon} />
               </div>
               <div className='mb-5 h6'>{item.title}</div>
-              <div className='base1 font-semibold text-n-4/50'>{item.date}</div>
+              <div className='base1 font-semibold text-accent-2'>{item.date}</div>
             </div>
             <div className='grow'>
               <div>
@@ -42,7 +42,7 @@ const Updates = ({ items }: UpdatesProps) => {
                   alt=''
                 />
               </div>
-              <div className='mt-8 base1 text-n-4'>{item.content}</div>
+              <div className='mt-8 base1 text-n-5 dark:text-n-3'>{item.content}</div>
             </div>
           </div>
         ))}
