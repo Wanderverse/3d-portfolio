@@ -1,6 +1,7 @@
 import { OpenAI } from 'langchain/llms/openai'
 import { PineconeStore } from 'langchain/vectorstores/pinecone'
 import { ConversationalRetrievalQAChain } from 'langchain/chains'
+import { CallbackManager } from 'langchain/callbacks'
 
 const CONDENSE_PROMPT = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
@@ -90,13 +91,17 @@ Question: {question}
 {context}
 =========
 Answer in Markdown:`
-export const makeChain = (vectorstore: PineconeStore) => {
+export const makeChain = (vectorstore: PineconeStore, onTokenStream?: (token: string) => void) => {
   const model = new OpenAI({
     temperature: 1, // increase temepreature to get more creative answers
     modelName: 'gpt-3.5-turbo', //change this to gpt-3.5-turbo if you don't have access to gpt4
     streaming: true,
+    callbackManager: CallbackManager.fromHandlers({
+      async handleLLMNewToken(token: string) {
+        onTokenStream?.(token)
+      },
+    }),
   })
-
   const chain = ConversationalRetrievalQAChain.fromLLM(model, vectorstore.asRetriever(), {
     qaTemplate: QA_PROMPT,
     questionGeneratorTemplate: CONDENSE_PROMPT,
