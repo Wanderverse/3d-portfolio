@@ -207,7 +207,7 @@ const Overlay: React.FC = () => {
           <span className='text-[30px] font-normal'>Hello__</span>
           <span className='h-7 text-[30px] absolute top-10 right-10'>⎑</span>
         </div>
-        <span>I'm</span>
+        <span>{`I'm `}</span>
         <span className='md:text-4xl text-6xl font-bold text-primary-1'> THIEN NGUYEN</span>
         <Trail open={open}>
           <span className=' font-normal leading-tight '>
@@ -252,7 +252,7 @@ const Overlay: React.FC = () => {
       </div>
       <div className='pointer-events-auto w-full p-0 flex flex-row items-end justify-center'>
         <p className='full whitespace-nowrap flex-1 text-base leading-[1.5em]'>
-          <b>A Creative Coder's Journey</b>
+          <b>{`A Creative Coder's Journey`}</b>
           <br />
           Where Technology Meets Imagination
         </p>
