@@ -1,7 +1,7 @@
 'use client'
 import * as THREE from 'three'
-import { useRef, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useEffect, useRef, useState } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
 import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei'
 import { Geometry, Base, Subtraction } from '@react-three/csg'
 import { useRouter } from 'next/navigation'
@@ -15,6 +15,20 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
   const sphereRef = useRef(null)
   const portalRef = useRef(null)
   const sphereTargetScale = useRef(1) // non-hovered scale
+
+  const { size } = useThree() // this hook gives you access to the state of the canvas
+  const width = size.width
+
+  useEffect(() => {
+    if (sphereRef.current) {
+      if (width <= 767) {
+        sphereRef.current.position.set(0, -1, 0)
+        portalRef.current && portalRef.current.position.set(0, 0, -2)
+      } else if (width > 767) {
+        sphereRef.current.position.set(0, 0, 0)
+      }
+    }
+  }, [width])
 
   useFrame((state, delta) => {
     const { clock } = state
@@ -99,7 +113,7 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
           transmission={hovered ? 1.6 : 1.3}
         />
       </mesh>
-      {hovered && (
+      {/* {hovered && (
         <group name='Portal.Collective' position={[0, 0, 0]} scale={0.001} ref={portalRef}>
           <group name='Circle' position={[0, -180, 0]} scale={0.1}>
             <group name='Button' position={[32.34, -130.02, 229.75]}>
@@ -170,7 +184,7 @@ function Logo({ route = '/chat', cutterScale = 0.85, cutterPos = [0, 0, 0], setI
             </group>
           </group>
         </group>
-      )}
+      )} */}
     </group>
   )
 }

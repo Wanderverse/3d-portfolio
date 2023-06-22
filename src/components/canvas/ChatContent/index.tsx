@@ -124,7 +124,9 @@ const ChatContent = ({}: MainProps) => {
   }, [messages, pending])
 
   return (
-    <div className={`flex h-full w-full p-6  bg-n-3 dark:bg-transparent opacity-90`}>
+    <div
+      className={`relative z-10 pointer-events-all flex h-full w-full p-6 md:p-0 bg-n-3 dark:bg-transparent opacity-90`}
+    >
       <div className={`relative flex grow max-w-full `}>
         <div className={`relative flex flex-col grow max-w-full `}>
           <Chat ref={messageListRef} title='PersonalGPT'>

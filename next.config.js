@@ -7,6 +7,7 @@ const nextConfig = {
   experimental: {
     reactRoot: 'concurrent',
     appDir: true,
+    asyncWebAssembly: true,
   },
   transpilePackages: ['core', '@react-three/postprocessing'],
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.

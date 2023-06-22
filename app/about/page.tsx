@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic'
 import { Suspense, useRef, useState } from 'react'
 import Loader from '@/components/dom/Loader'
 import { generateRandomInteger } from '@/utils/numberUtils'
+import { useMediaQuery } from 'react-responsive'
 
 const Updates = dynamic(() => import('./Updates').then((mod) => mod), { ssr: false })
 const Experience = dynamic(() => import('./Experience').then((mod) => mod), { ssr: false })
@@ -22,7 +23,13 @@ const tabNavigation = ['Updates', 'FAQ', 'Experience']
 
 const Main = () => {
   const containerRef = useRef(null)
+  const isMobile = useMediaQuery({
+    query: '(min-width: 767px)',
+  })
 
+  const isDesktop = useMediaQuery({
+    query: '(min-width: 1179px)',
+  })
   return (
     <Suspense fallback={<Loader dotVariant={generateRandomInteger(0, 11)} />}>
       <PageLayout>

@@ -34,7 +34,7 @@
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
     "glsl-random": "^0.0.5",
-    "langchain": "^0.0.77",
+    "langchain": "^0.0.96",
     "next": "^13.4.3",
     "pdf-parse": "^1.1.1",
     "postprocessing": "^6.31.0",

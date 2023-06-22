@@ -29,7 +29,7 @@ const Main = ({}: MainProps) => {
 
   return (
     <>
-      <PageLayout noPadding={!isMobile} smallSidebar>
+      <PageLayout noPadding={true}>
         <Suspense fallback={<Loader dotVariant={generateRandomInteger(0, 11)} />}>
           <div ref={containerRef} className='content-container'>
             <div

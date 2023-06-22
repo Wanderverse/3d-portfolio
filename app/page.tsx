@@ -30,7 +30,7 @@ export default function Page() {
               setIsNavigating={setIsNavigating}
               route='/chat'
               scale={0.6}
-              position={[0, 0, 0]}
+              position={[0, -0.5, 0]}
             />
           </Landing>
           <Common />
