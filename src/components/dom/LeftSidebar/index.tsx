@@ -153,8 +153,6 @@ const LeftSidebar = ({ value, setValue, smallSidebar, visibleRightSidebar }: Lef
     }
   }
 
-  console.log('valeu', value)
-
   const navigation = [
     {
       title: 'Chat',

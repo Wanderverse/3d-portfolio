@@ -14,14 +14,7 @@ const Landing = ({ isNavigating, setIsNavigating, children }) => {
   return (
     <>
       {children}
-      <Particles count={20000} isNavigating={isNavigating} />
-      <EffectComposer>
-        <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
-        <Bloom intensity={1} luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
-        <Noise opacity={0.02} />
-        <Vignette eskil={false} offset={0.1} darkness={0.1} />
-        <ChromaticAberration offset={[0.005, 0.001]} radialModulation />
-      </EffectComposer>
+      <Particles count={10000} isNavigating={isNavigating} />
     </>
   )
 }
