@@ -260,9 +260,9 @@ const Overlay: React.FC = () => {
         <div className='w-2' />
         <p className='full flex-1 text-base leading-none text-right'></p>
       </div>
-      <div className='absolute bottom-10 right-10'>
+      {/* <div className='absolute bottom-10 right-10'>
         <p className='flex-1 text-sm font-semibold leading-none text-right'>thien-nguyen.dev</p>
-      </div>
+      </div> */}
     </div>
   )
 }

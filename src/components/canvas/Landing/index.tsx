@@ -2,7 +2,6 @@
 'use client'
 
 import Particles from '../Particles'
-import { Bloom, ChromaticAberration, DepthOfField, EffectComposer, Noise, Vignette } from '@react-three/postprocessing'
 import { memo, useEffect } from 'react'
 
 const Landing = ({ isNavigating, setIsNavigating, children }) => {

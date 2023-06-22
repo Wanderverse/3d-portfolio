@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo, useRef, memo } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { extend } from '@react-three/fiber'
 import { Color, InstancedMesh, MeshPhongMaterial, Object3D, PointLight, ColorRepresentation } from 'three'
@@ -143,4 +143,4 @@ function getColour(x: number, y: number): string {
   // Return the color representation
   return hslToHex(hue, saturation, lightness)
 }
-export default Particles
+export default memo(Particles)
